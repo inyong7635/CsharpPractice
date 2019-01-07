@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsharpPractice
+namespace Project2
 {
-    class Program
+    class Cat : Animal
     {
-        static void Main(string[] args)
-        {
-        }
+        public void Meow() { Console.WriteLine("냥냥 웁니다."); }
     }
 }

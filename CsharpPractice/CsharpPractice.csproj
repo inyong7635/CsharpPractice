@@ -43,8 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Animal.cs" />
+    <Compile Include="Box.cs" />
+    <Compile Include="Cat.cs" />
+    <Compile Include="Child.cs" />
+    <Compile Include="Dog.cs" />
+    <Compile Include="IBasics.cs" />
+    <Compile Include="main.cs" />
+    <Compile Include="MyMath.cs" />
+    <Compile Include="Parent.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.cs" />
+    <Compile Include="TestCalss.cs" />
+    <Compile Include="Wanted.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
