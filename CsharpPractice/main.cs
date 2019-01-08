@@ -6,12 +6,56 @@ using System.Threading.Tasks;
 
 namespace Project2
 {
+    class Student{
+        public string Name{get; set;}
+        public double Score{get; set;}
+
+        public Student(string name, double score){
+            this.Name = name;
+            this.Score = score;
+        }
+
+        public override string ToString()
+        {
+            return this.Name+" : "+this.Score;
+        }
+    }
+
+    class Students{
+        private List<Student> listOfStudent = new List<Student>();
+        public delegate void PrintProcess(Student list);
+
+        public void Add(Student student){
+            listOfStudent.Add(student);
+        }
+
+        public void Print(){
+            Print((student)=>{
+                Console.WriteLine(student);
+            });
+        }
+
+        public void Print(PrintProcess process){
+            foreach(var item in listOfStudent){
+                process(item);
+            }
+        }
+    }
     class main
     {
+        public delegate void SendString(string message);
         static void NextPosition(int x, int y, int vx, int vy, out int rx, out int ry)
         {
             rx = x + vx;
             ry = y + vy;
+        }
+
+        static int SortWithPric(Product a, Product b){
+            return a.Price.CompareTo(b.Price);
+        }
+
+        static void Hello(string message){
+            Console.WriteLine(message);
         }
         static void Main()
         {
@@ -84,6 +128,45 @@ namespace Project2
             {
                 Console.WriteLine(item);
             }
+            List<Product> products = new List<Product>(){
+                new Product(){Name = "감자", Price = 500},
+                new Product(){Name = "사과", Price = 700},
+                new Product(){Name = "고구마", Price = 400},
+                new Product(){Name = "배추", Price = 600},
+                new Product(){Name = "상추", Price = 300}
+            };
+
+            //products.Sort(SortWithPrice);
+
+            /*products.Sort(delegate(Product a, Product b){
+                return a.Price.CompareTo(b.Price);
+            });*/
+
+            products.Sort((a,b)=>a.Price.CompareTo(b.Price));
+
+            foreach(var item in products){
+                Console.WriteLine(item.Name + " : "+item.Price);
+            }
+
+            Students students = new Students();
+            students.Add(new Student("전하진", 2.3));
+            students.Add(new Student("오명인", 2.2));
+
+            students.Print();
+            students.Print((student)=>{
+                Console.WriteLine();
+                Console.WriteLine("이름 : " + student.Name);
+                Console.WriteLine("학점 : " +student.Score);
+            });
+
+            SendString sayHello, sayGoodbye, multiDelegate;
+            sayHello = Hello;
+            sayGoodbye = (message)=>{Console.WriteLine(message);};
+            multiDelegate = sayHello+sayGoodbye;
+            sayHello("안녕하세요");
+            sayGoodbye("안녕히가세요");
+            multiDelegate("hello world");
+            Console.ReadLine();
         }
     }
 }
